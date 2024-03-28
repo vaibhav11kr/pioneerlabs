@@ -1,0 +1,7 @@
+/* styles.css (or any other CSS file you are using) */
+.text-gradient {
+    background-image: linear-gradient(to right, #9AE97E, #ADB529);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  

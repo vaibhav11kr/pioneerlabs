@@ -15,19 +15,15 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    // Function to check screen size and hide navigation on smaller screens
     const handleResize = () => {
-      const isSmallScreen = window.innerWidth < 768; // Adjust as needed
+      const isSmallScreen = window.innerWidth < 768; 
       setIsNavVisible(!isSmallScreen);
     };
 
-    // Add event listener for window resize
     window.addEventListener("resize", handleResize);
 
-    // Call handleResize on initial mount
     handleResize();
 
-    // Clean up the event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -36,7 +32,7 @@ const NavBar = () => {
   return (
     <>
       {isNavVisible && (
-        <div className="bg-[#1A1E1C] h-[98%] w-[70%] md:w-[20%] pt-6 z-10 shadow-lg flex flex-col rounded-r-lg overflow-scroll mb-4">
+        <div className="fixed top-0 left-0 md:static bg-[#1A1E1C] h-[98%] w-[70%] md:w-[20%] pt-6 shadow-lg flex flex-col rounded-r-lg overflow-scroll mb-4 z-20">
           <div className="flex mb-6 items-center justify-between w-[97%] h-14">
             <img src={Logo} alt="logo" className="h-12" />
             <Menu
@@ -51,10 +47,11 @@ const NavBar = () => {
         </div>
       )}
       <div
-        className={`fixed top-0 left-0 pl-2 pt-2 h-full w-10 bg-[#1A1E1C] z-20 cursor-pointer ${
+        className={`pl-2 pt-2 h-[100%] w-10 bg-[#1A1E1C] z-20 cursor-pointer ${
           isNavVisible ? "hidden" : "justify-center items-center"
         }`}
         onClick={toggleNavVisibility}
+        // onMouseOver={toggleNavVisibility}
       >
         <img src={LogoSymbol} alt="logo" className="h-6 ml-1 mb-2" />
         <Menu className="text-white h-7 m-auto" />
