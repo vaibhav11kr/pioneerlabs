@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavLinks from "./NavLinks";
 import ExtraItems from "./ExtraItems";
 import Profile from "./Profile";
@@ -9,15 +9,29 @@ import { Menu } from "@styled-icons/entypo/Menu";
 
 const NavBar = () => {
   const [isNavVisible, setIsNavVisible] = useState(true);
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
   const toggleNavVisibility = () => {
     setIsNavVisible(!isNavVisible);
   };
 
-  const toggleSidebarVisibility = () => {
-    setIsSidebarVisible(!isSidebarVisible);
-  };
+  useEffect(() => {
+    // Function to check screen size and hide navigation on smaller screens
+    const handleResize = () => {
+      const isSmallScreen = window.innerWidth < 768; // Adjust as needed
+      setIsNavVisible(!isSmallScreen);
+    };
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Call handleResize on initial mount
+    handleResize();
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <>
