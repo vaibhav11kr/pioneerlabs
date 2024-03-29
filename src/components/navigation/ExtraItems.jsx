@@ -13,7 +13,7 @@ const links = [
   ];
 const ExtraItems = () => {
   return (
-    <div className='h-auto mt-10 items-end mb-8'>
+    <div className='h-auto mt-10 items-end'>
         {
             links.map((link)=>{
                 return(

@@ -21,7 +21,7 @@ const NavLinks = () => {
     const { pathname } = useLocation(); 
     
     return (
-        <div className='h-auto mt-10 mb-24'>
+        <div className='h-auto mt-10 '>
             {
                 links.map((link) => {
                     const isActive = link.url === pathname; 
