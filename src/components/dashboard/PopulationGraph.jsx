@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 import { Chart, CategoryScale, LinearScale, Title } from 'chart.js';
-import { BarElement } from 'chart.js';
+import { LineElement, PointElement } from 'chart.js'; 
 
-Chart.register(BarElement);
-
+Chart.register(LineElement, PointElement); 
 Chart.register(CategoryScale, LinearScale, Title);
 
 const PopulationGraph = () => {
@@ -14,30 +13,28 @@ const PopulationGraph = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios('https://datausa.io/api/data?drilldowns=Nation&measures=Population');
-        const formattedData = result.data.map(item => {
-          return {
-            year: item.Year,
-            population: item.Population
-          };
-        });
+        const result = await axios.get('https://datausa.io/api/data?drilldowns=Nation&measures=Population');
+        const formattedData = result.data.data.map(item => ({ year: item.Year, population: item.Population }));
         setPopulationData(formattedData);
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching data:', error);
       }
     };
     fetchData();
   }, []);
+
 
   const chartData = {
     labels: populationData.map(item => item.year),
     datasets: [
       {
         label: 'Population',
-        data: populationData.map((item) => (item.population)),
+        data: populationData.map(item => (item.population / 1000000)),
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1
+        borderWidth: 1,
+        showLine: true, 
+        showPoints: true 
       }
     ]
   };
@@ -57,19 +54,24 @@ const PopulationGraph = () => {
         beginAtZero: true,
         title: {
           display: true,
-          text: 'Population'
+          text: 'Population (in millions)' 
+        },
+        ticks: {
+          callback: function(value, index, values) {
+            return value + ' M'; 
+          }
         }
       }
     },
     plugins: {
       title: {
         display: true,
-        // text: 'Population by Year'
+        text: 'Population by Year'
       }
     }
   };
 
-  return <Bar data={chartData} options={chartOptions} />;
+  return <Line data={chartData} options={chartOptions} />;
 };
 
 export default PopulationGraph;
