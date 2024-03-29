@@ -47,14 +47,14 @@ const NavBar = () => {
         </div>
       )}
       <div
-        className={`pl-2 pt-2 h-[100%] w-10 bg-[#1A1E1C] z-20 cursor-pointer ${
+        className={`pl-2 pt-2 h-[100%] w-10 bg-[#1A1E1C] z-20 ${
           isNavVisible ? "hidden" : "justify-center items-center"
         }`}
-        onClick={toggleNavVisibility}
+        
         // onMouseOver={toggleNavVisibility}
       >
         <img src={LogoSymbol} alt="logo" className="h-6 ml-1 mb-2" />
-        <Menu className="text-white h-7 m-auto" />
+        <Menu className="text-white h-7 m-auto cursor-pointer" onClick={toggleNavVisibility}/>
       </div>
     </>
   );
