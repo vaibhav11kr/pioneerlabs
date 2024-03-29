@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom'; 
-
+import { Link } from 'react-router-dom';
 import { Home } from 'styled-icons/boxicons-regular';
 import { Organization } from '@styled-icons/octicons/Organization';
 import { Cube } from "@styled-icons/boxicons-regular/Cube";
@@ -28,10 +28,10 @@ const NavLinks = () => {
                     
                     return (
                         <li key={link.url} className={`list-none text-sm font-medium pl-4 mb-6 ${isActive ? 'text-green-500' : 'text-white'} flex items-center hover:text-[#247D25]`}>
-                            <a href={link.url} className='flex items-center'>
+                            <Link to={link.url} className='flex items-center'>
                                 <p>{link.icon}</p>
                                 <p>{link.title}</p>
-                            </a>
+                            </Link>
                         </li>
                     );
                 })
