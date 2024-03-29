@@ -32,7 +32,7 @@ const NavBar = () => {
   return (
     <>
       {isNavVisible && (
-        <div className="fixed top-0 left-0 md:static bg-[#1A1E1C] h-screen sm:min-w-[20%] pt-6 shadow-lg flex flex-col rounded-r-lg z-20 overflow-y-auto">
+        <div className="fixed top-0 left-0 md:static bg-[#1A1E1C] h-full sm:min-w-[20%] pt-6 shadow-lg flex flex-col rounded-r-lg z-20 overflow-y-auto">
           <div className="flex mb-6 items-center justify-between w-[97%] h-14">
             <img src={Logo} alt="logo" className="h-12" />
             <Menu
