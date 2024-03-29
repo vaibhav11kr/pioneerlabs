@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
+import { Chart, CategoryScale, LinearScale, Title } from 'chart.js';
+import { BarElement } from 'chart.js';
+
+Chart.register(BarElement);
+
+Chart.register(CategoryScale, LinearScale, Title);
 
 const PopulationGraph = () => {
   const [populationData, setPopulationData] = useState([]);
@@ -39,7 +45,15 @@ const PopulationGraph = () => {
   const chartOptions = {
     responsive: true,
     scales: {
+      x: {
+        type: 'category',
+        title: {
+          display: true,
+          text: 'Year'
+        }
+      },
       y: {
+        type: 'linear',
         beginAtZero: true,
         title: {
           display: true,
@@ -50,7 +64,7 @@ const PopulationGraph = () => {
     plugins: {
       title: {
         display: true,
-        text: 'Population by Year'
+        // text: 'Population by Year'
       }
     }
   };

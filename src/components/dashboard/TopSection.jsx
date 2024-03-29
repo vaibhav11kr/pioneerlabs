@@ -5,7 +5,7 @@ import RecentPost from './RecentPost';
 
 const TopSection = () => {
   return (
-    <div className='md:flex md:flex-row gap-5 md:h-[45%]'>
+    <div className='md:flex md:flex-row gap-5 md:h-auto mb-8'>
       <MarketOverview />
       <WalletBalance />
       <RecentPost />
