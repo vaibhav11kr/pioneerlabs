@@ -4,8 +4,8 @@ import { Search } from "@styled-icons/bootstrap/Search";
 const SearchBar = () => {
   return (
     <div className="h-16">
-        <div class="relative w-[93%] bg-[#333333] rounded-md ml-2 ">
-      <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+        <div className="relative w-[93%] bg-[#333333] rounded-md ml-2 ">
+      <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
         <Search className="w-3 h-3 text-white " />
       </div>
       <input
