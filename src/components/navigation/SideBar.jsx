@@ -10,7 +10,6 @@ const Sidebar = ({ onClick }) => {
           onClick={onClick}
         />
       </div>
-      {/* Additional sidebar content can go here */}
     </div>
   );
 };
